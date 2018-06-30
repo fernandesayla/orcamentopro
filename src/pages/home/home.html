@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Orcamentos 
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col col-md-6 >
+              <ion-card text-center class="ion-card" padding>
+       
+                  <div class="card-title" color="light" padding-bottom  >{{orcamentos.length}}</div>
+                  <div class="card-subtitle" color="light" padding-bottom >Quantidade</div>
+                </ion-card>
+               
+          </ion-col>
+          <ion-col col-md-6>  
+          <ion-card  text-center padding>
+                   
+              <div class="card-title" padding-bottom>{{total}}</div>
+              <div class="card-subtitle" padding-bottom>Valor</div>
+            </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+ 
+
+    <ion-list>
+  <ion-item-sliding  *ngFor="let orcamento of orcamentos"  >
+  <ion-item >
+     
+    <h2>{{orcamento.nome}}</h2>
+    <p>{{orcamento.valor}}</p>
+    <ion-note item-right>{{orcamento.data | date: 'dd/MM/yyyy'}}</ion-note>
+
+ 
+  </ion-item>
+  <ion-item-options side="left">
+      <button ion-button color="primary">
+        <ion-icon name="text"></ion-icon>
+        Text
+      </button>
+      <button ion-button color="secondary">
+        <ion-icon name="call"></ion-icon>
+        Call
+      </button>
+    </ion-item-options>
+    <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="edit(orcamento)">
+          <ion-icon name="create" color="light" ></ion-icon>
+          Edit
+        </button>
+    
+      <button ion-button color="danger" (click)="del(orcamento.id)">
+       
+        <ion-icon name="trash" color="light" ></ion-icon>
+        Delete
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+  </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="add()">
+      <ion-icon name="add" color="light" large></ion-icon>
+    </button>
+
+  </ion-fab>
+</ion-content>
+
+
