@@ -41,9 +41,14 @@ export class OrcamentoProvider {
             this.orcamentos.splice(i, 1);
           }
         }
-      }else(
-        orcamento.id = new Date().getTime()+""
-      )
+      }else{
+        orcamento.id = new Date().getTime()+"";
+        
+       
+      }
+      if(!orcamento.data){
+        orcamento.data = new Date()
+      }
       this.orcamentos.push(orcamento);
       this.localStorageService.set("orcamentos", JSON.stringify(this.orcamentos));
       

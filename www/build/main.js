@@ -52,8 +52,12 @@ var OrcamentoProvider = /** @class */ (function () {
                 }
             }
         }
-        else
-            (orcamento.id = new Date().getTime() + "");
+        else {
+            orcamento.id = new Date().getTime() + "";
+        }
+        if (!orcamento.data) {
+            orcamento.data = new Date();
+        }
         this.orcamentos.push(orcamento);
         this.localStorageService.set("orcamentos", JSON.stringify(this.orcamentos));
     };
@@ -67,9 +71,10 @@ var OrcamentoProvider = /** @class */ (function () {
     };
     OrcamentoProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angular_2_local_storage__["LocalStorageService"]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angular_2_local_storage__["LocalStorageService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angular_2_local_storage__["LocalStorageService"]) === "function" && _a || Object])
     ], OrcamentoProvider);
     return OrcamentoProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=orcamento.js.map
