@@ -29,26 +29,25 @@ export class OrcamentoProvider {
     }
   }
   
-  save(orcamento: Orcamento): void {
-
-    this.getDb();
-    this.orcamentos.push(orcamento);
-    this.localStorageService.set("orcamentos", JSON.stringify(this.orcamentos));
-  }
-
-  edit(orcamento: Orcamento){
-    this.getDb();
-    for (var i=0; i < this.orcamentos.length; i++)
-    {
-      if (this.orcamentos[i].id == orcamento.id)
-      {
-        this.orcamentos.splice(i, 1);
-      }
-    }
-    this.orcamentos.push(orcamento);
-    this.localStorageService.set("orcamentos", JSON.stringify(this.orcamentos));
-
-  }
+  save(orcamento: Orcamento):void {
+     
+      this.getDb();
+      if (orcamento.id) {
+        
+        for (var i=0; i < this.orcamentos.length; i++)
+        {
+          if (this.orcamentos[i].id == orcamento.id)
+          {
+            this.orcamentos.splice(i, 1);
+          }
+        }
+      }else(
+        orcamento.id = new Date().getTime()+""
+      )
+      this.orcamentos.push(orcamento);
+      this.localStorageService.set("orcamentos", JSON.stringify(this.orcamentos));
+      
+   }
   
   delete(orcamentoId: string): void {
     for (var i=0; i < this.orcamentos.length; i++)

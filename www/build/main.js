@@ -45,16 +45,15 @@ var OrcamentoProvider = /** @class */ (function () {
     };
     OrcamentoProvider.prototype.save = function (orcamento) {
         this.getDb();
-        this.orcamentos.push(orcamento);
-        this.localStorageService.set("orcamentos", JSON.stringify(this.orcamentos));
-    };
-    OrcamentoProvider.prototype.edit = function (orcamento) {
-        this.getDb();
-        for (var i = 0; i < this.orcamentos.length; i++) {
-            if (this.orcamentos[i].id == orcamento.id) {
-                this.orcamentos.splice(i, 1);
+        if (orcamento.id) {
+            for (var i = 0; i < this.orcamentos.length; i++) {
+                if (this.orcamentos[i].id == orcamento.id) {
+                    this.orcamentos.splice(i, 1);
+                }
             }
         }
+        else
+            (orcamento.id = new Date().getTime() + "");
         this.orcamentos.push(orcamento);
         this.localStorageService.set("orcamentos", JSON.stringify(this.orcamentos));
     };
@@ -105,9 +104,16 @@ var HomePage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.orcProv = orcProv;
         this.orcamentos = new Array();
+        this.total = 0;
         this.orcamentos = orcProv.getAll();
-        this.total = this.orcamentos.reduce(function (total, currentValue) { return total + +currentValue.valor; }, 0);
     }
+    HomePage.prototype.soma = function () {
+        this.total = this.orcamentos.reduce(function (total, currentValue) { return total + +currentValue.valor; }, 0);
+    };
+    HomePage.prototype.ionViewDidEnter = function () {
+        this.orcamentos = this.orcProv.getAll();
+        this.soma();
+    };
     HomePage.prototype.edit = function (orcamento) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__add_add__["a" /* AddPage */], { orcamento: orcamento });
     };
@@ -116,6 +122,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage.prototype.del = function (key) {
         this.orcProv.delete(key);
+        this.soma();
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -139,7 +146,7 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_orcamento_orcamento__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -160,31 +167,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var AddPage = /** @class */ (function () {
-    function AddPage(navCtrl, navParams, orcProv) {
+    function AddPage(navCtrl, formBuilder, navParams, orcProv, toast) {
         this.navCtrl = navCtrl;
+        this.formBuilder = formBuilder;
         this.navParams = navParams;
         this.orcProv = orcProv;
-        this.orcamento = this.navParams.data || {};
+        this.toast = toast;
+        this.orcamento = this.navParams.data.orcamento || {};
+        this.createForm();
         this.setupPageTitle();
     }
+    AddPage.prototype.createForm = function () {
+        this.form = this.formBuilder.group({
+            id: [this.orcamento.id],
+            data: [this.orcamento.data, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required],
+            nome: [this.orcamento.nome, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required],
+            email: [this.orcamento.email, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required],
+            telefone: [this.orcamento.telefone, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required],
+            valor: [this.orcamento.valor, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required],
+        });
+    };
     AddPage.prototype.setupPageTitle = function () {
         this.title = this.navParams.data.orcamento ? 'Alterando orcamento' : 'Novo orcamento';
     };
     AddPage.prototype.save = function () {
-        if (!this.navParams.data.orcamento)
-            this.orcProv.edit(this.orcamento);
-        else
-            this.orcProv.save(this.orcamento);
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+        // console.log("save save");
+        try {
+            this.orcProv.save(this.form.value);
+            this.toast.create({ message: 'Orcamento salvo com sucesso.', duration: 3000 }).present();
+            this.navCtrl.pop();
+        }
+        catch (e) {
+            this.toast.create({ message: 'Erro ao salvar o orcamento.', duration: 3000 }).present();
+            console.error(e);
+        }
     };
     AddPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-add',template:/*ion-inline-start:"/Users/aylafernandes/Documents/projetos/orcamentopro/src/pages/add/add.html"*/'<!--\n  Generated template for the AddPage page.\n  \n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  \n  <ion-navbar>\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n  \n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n    \n  \n    \n    <ion-item>\n      <ion-label stacked>Data</ion-label>\n      <ion-input type="date" [(ngModel)]="orcamento.data"></ion-input>\n    </ion-item>\n    \n    <ion-item>\n      <ion-label stacked>Nome</ion-label>\n      <ion-input type="text" [(ngModel)]="orcamento.nome"></ion-input>\n    </ion-item>\n\n    <ion-item>\n        <ion-label stacked>Email</ion-label>\n        <ion-input type="text" [(ngModel)]="orcamento.email"></ion-input>\n      </ion-item>\n\n      <ion-item>\n          <ion-label stacked>Telefone</ion-label>\n          <ion-input type="text" [(ngModel)]="orcamento.telefone"></ion-input>\n        </ion-item>\n    \n    <ion-item>\n      <ion-label stacked>Valor</ion-label>\n      <ion-input type="number" [(ngModel)]="orcamento.valor"></ion-input>\n    </ion-item>\n    \n  </ion-list>\n  \n  <button ion-button  (click)="save();">Salvar orcamento</button>\n  \n  \n</ion-content>\n'/*ion-inline-end:"/Users/aylafernandes/Documents/projetos/orcamentopro/src/pages/add/add.html"*/,
+            selector: 'page-add',template:/*ion-inline-start:"/Users/aylafernandes/Documents/projetos/orcamentopro/src/pages/add/add.html"*/'<!--\n  Generated template for the AddPage page.\n  \n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  \n  <ion-navbar>\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n  \n</ion-header>\n\n\n<ion-content padding>\n    <form [formGroup]="form">\n    \n  \n    \n    <ion-item>\n      <ion-label stacked>Data</ion-label>\n      <ion-input type="date" formControlName="data"></ion-input>\n    </ion-item>\n    \n    <ion-item>\n      <ion-label stacked>Nome</ion-label>\n      <ion-input type="text" formControlName="nome"></ion-input>\n    </ion-item>\n    <ion-item *ngIf="!form.controls.nome.valid && (form.controls.nome.dirty || form.controls.nome.touched)" color="danger">\n        <div [hidden]="!form.controls.nome.errors.required">\n          O campo é obrigatório\n        </div>\n      </ion-item>\n\n    <ion-item>\n        <ion-label stacked>Email</ion-label>\n        <ion-input type="email" formControlName="email"></ion-input>\n      </ion-item>\n      <ion-item *ngIf="!form.controls.email.valid && (form.controls.email.dirty || form.controls.email.touched)" color="danger">\n          <div [hidden]="!form.controls.email.errors.required">\n            O campo é obrigatório\n          </div>\n        </ion-item>\n\n      <ion-item>\n          <ion-label stacked>Telefone</ion-label>\n          <ion-input type="tel" formControlName="telefone"></ion-input>\n        </ion-item>\n        <ion-item *ngIf="!form.controls.telefone.valid && (form.controls.telefone.dirty || form.controls.telefone.touched)" color="danger">\n            <div [hidden]="!form.controls.telefone.errors.required">\n              O campo é obrigatório\n            </div>\n          </ion-item>\n    \n    <ion-item>\n      <ion-label stacked>Valor</ion-label>\n      <ion-input type="number" formControlName="valor"></ion-input>\n    </ion-item>\n    <ion-item *ngIf="!form.controls.valor.valid && (form.controls.valor.dirty || form.controls.valor.touched)" color="danger">\n        <div [hidden]="!form.controls.valor.errors.required">\n          O campo é obrigatório\n        </div>\n      </ion-item>\n  </form>\n  \n  <button ion-button block type="submit"   (click)="save()">Salvar orcamento</button>\n  \n  \n</ion-content>\n'/*ion-inline-end:"/Users/aylafernandes/Documents/projetos/orcamentopro/src/pages/add/add.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_orcamento_orcamento__["a" /* OrcamentoProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_orcamento_orcamento__["a" /* OrcamentoProvider */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_orcamento_orcamento__["a" /* OrcamentoProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_orcamento_orcamento__["a" /* OrcamentoProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */]) === "function" && _e || Object])
     ], AddPage);
     return AddPage;
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=add.js.map

@@ -11,24 +11,25 @@ import { AddPage } from '../add/add';
 })
 export class HomePage {
   orcamentos: Orcamento[] = new Array();
-  total: number
+  total: number = 0
   constructor(public navCtrl: NavController, private orcProv: OrcamentoProvider) {
     this.orcamentos = orcProv.getAll();
+    }
+  soma(){
     this.total =  this.orcamentos.reduce((total, currentValue) => total + +currentValue.valor, 0);
   }
-   
+  ionViewDidEnter(){
+    this.orcamentos = this.orcProv.getAll();
+    this.soma()
+  }
   edit(orcamento: Orcamento){
-
     this.navCtrl.push(AddPage, {orcamento: orcamento} );
   }
   add() {
     this.navCtrl.push(AddPage);
   }
-
   del(key: string) {
     this.orcProv.delete(key);
+    this.soma()
   }
-
- 
-
 }
