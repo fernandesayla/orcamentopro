@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { OrcamentoProvider } from '../providers/orcamento/orcamento';
 import { AddPage } from '../pages/add/add';
+import { CallNumber } from '@ionic-native/call-number';
 
 /* LocalStorage */
 import { LocalStorageModule } from 'angular-2-local-storage';
@@ -27,6 +28,7 @@ import { LocalStorageModule } from 'angular-2-local-storage';
       prefix: 'orcamentosApp',
       storageType: 'localStorage'
     })
+    
 
   ],
   bootstrap: [IonicApp],
@@ -38,6 +40,7 @@ import { LocalStorageModule } from 'angular-2-local-storage';
   providers: [
     StatusBar,
     SplashScreen,
+    CallNumber,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OrcamentoProvider
   ]
