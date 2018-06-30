@@ -19,7 +19,7 @@ export class HomePage {
    
   edit(orcamento: Orcamento){
 
-    this.navCtrl.push(AddPage, orcamento);
+    this.navCtrl.push(AddPage, {orcamento: orcamento} );
   }
   add() {
     this.navCtrl.push(AddPage);

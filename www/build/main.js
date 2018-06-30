@@ -109,7 +109,7 @@ var HomePage = /** @class */ (function () {
         this.total = this.orcamentos.reduce(function (total, currentValue) { return total + +currentValue.valor; }, 0);
     }
     HomePage.prototype.edit = function (orcamento) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__add_add__["a" /* AddPage */], orcamento);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__add_add__["a" /* AddPage */], { orcamento: orcamento });
     };
     HomePage.prototype.add = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__add_add__["a" /* AddPage */]);
@@ -165,14 +165,13 @@ var AddPage = /** @class */ (function () {
         this.navParams = navParams;
         this.orcProv = orcProv;
         this.orcamento = this.navParams.data || {};
-        console.log(this.orcamento);
         this.setupPageTitle();
     }
     AddPage.prototype.setupPageTitle = function () {
-        this.title = this.navParams.data ? 'Alterando orcamento' : 'Novo orcamento';
+        this.title = this.navParams.data.orcamento ? 'Alterando orcamento' : 'Novo orcamento';
     };
     AddPage.prototype.save = function () {
-        if (!this.orcamento.id)
+        if (!this.navParams.data.orcamento)
             this.orcProv.edit(this.orcamento);
         else
             this.orcProv.save(this.orcamento);

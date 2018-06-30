@@ -20,17 +20,16 @@ export class AddPage {
   orcamento: Orcamento
   title: string
   constructor(public navCtrl: NavController, public navParams: NavParams, private orcProv: OrcamentoProvider) {
-    this.orcamento = this.navParams.data || {};
-     console.log( this.orcamento);
+    this.orcamento = this.navParams.data || { };
       this.setupPageTitle()
   }
 
   private setupPageTitle() {
-    this.title = this.navParams.data ? 'Alterando orcamento' : 'Novo orcamento';
+    this.title = this.navParams.data.orcamento ? 'Alterando orcamento' : 'Novo orcamento';
   }
  
   save() {
-    if(!this.orcamento.id)
+    if(!this.navParams.data.orcamento)
       this.orcProv.edit(this.orcamento);
     else
       this.orcProv.save(this.orcamento);
