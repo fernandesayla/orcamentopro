@@ -4,6 +4,7 @@ import { OrcamentoProvider } from '../../providers/orcamento/orcamento';
 import { Orcamento } from '../../models/orcamento';
 import { AddPage } from '../add/add';
 import { CallNumber } from '@ionic-native/call-number';
+ 
 
 @Component({
   selector: 'page-home',
@@ -12,7 +13,7 @@ import { CallNumber } from '@ionic-native/call-number';
 export class HomePage {
   orcamentos: Orcamento[] = new Array();
   total: number = 0
-  constructor(public navCtrl: NavController, private orcProv: OrcamentoProvider, private callNumber: CallNumber ) {
+  constructor(public navCtrl: NavController, private orcProv: OrcamentoProvider , private callNumber: CallNumber ) {
     this.orcamentos = orcProv.getAll();
     }
   soma(){

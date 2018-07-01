@@ -52,12 +52,8 @@ var OrcamentoProvider = /** @class */ (function () {
                 }
             }
         }
-        else {
-            orcamento.id = new Date().getTime() + "";
-        }
-        if (!orcamento.data) {
-            orcamento.data = new Date();
-        }
+        else
+            (orcamento.id = new Date().getTime() + "");
         this.orcamentos.push(orcamento);
         this.localStorageService.set("orcamentos", JSON.stringify(this.orcamentos));
     };
@@ -71,10 +67,9 @@ var OrcamentoProvider = /** @class */ (function () {
     };
     OrcamentoProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angular_2_local_storage__["LocalStorageService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angular_2_local_storage__["LocalStorageService"]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angular_2_local_storage__["LocalStorageService"]])
     ], OrcamentoProvider);
     return OrcamentoProvider;
-    var _a;
 }());
 
 //# sourceMappingURL=orcamento.js.map
@@ -257,7 +252,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/aylafernandes/Documents/projetos/orcamentopro/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Orcamentos \n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n    <ion-grid>\n        <ion-row>\n          <ion-col col-md-6 >\n              <ion-card text-center class="ion-card" padding>\n       \n                  <div class="card-title" color="light" padding-bottom  >{{orcamentos.length}}</div>\n                  <div class="card-subtitle" color="light" padding-bottom >Quantidade</div>\n                </ion-card>\n               \n          </ion-col>\n          <ion-col col-md-6>  \n          <ion-card  text-center padding>\n                   \n              <div class="card-title" padding-bottom>{{total}}</div>\n              <div class="card-subtitle" padding-bottom>Valor</div>\n            </ion-card>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n \n\n    <ion-list>\n  <ion-item-sliding  *ngFor="let orcamento of orcamentos"  >\n  <ion-item >\n     \n    <h2>{{orcamento.nome}}</h2>\n    <p>{{orcamento.valor}}</p>\n    <ion-note item-right>{{orcamento.data | date: \'dd/MM/yyyy\'}}</ion-note>\n\n \n  </ion-item>\n  <ion-item-options side="left">\n      <button ion-button color="secondary" (click)="makeCall(orcamento.telefone)">\n        <ion-icon name="call"></ion-icon>\n        Call\n      </button>\n    </ion-item-options>\n    <ion-item-options side="right">\n        <button ion-button color="secondary" (click)="edit(orcamento)">\n          <ion-icon name="create" color="light" ></ion-icon>\n          Edit\n        </button>\n    \n      <button ion-button color="danger" (click)="del(orcamento.id)">\n       \n        <ion-icon name="trash" color="light" ></ion-icon>\n        Delete\n      </button>\n    </ion-item-options>\n  </ion-item-sliding>\n  </ion-list>\n  <ion-fab right bottom>\n    <button ion-fab color="primary" (click)="add()">\n      <ion-icon name="add" color="light" large></ion-icon>\n    </button>\n\n  </ion-fab>\n</ion-content>\n\n\n'/*ion-inline-end:"/Users/aylafernandes/Documents/projetos/orcamentopro/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/aylafernandes/Documents/projetos/orcamentopro/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Orcamentos \n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n    <ion-grid>\n        <ion-row>\n          <ion-col col-md-6 >\n              <ion-card text-center class="ion-card" padding>\n       \n                  <div class="card-title" color="light" padding-bottom  >{{orcamentos.length}}</div>\n                  <div class="card-subtitle" color="light" padding-bottom >Quantidade</div>\n                  \n                </ion-card>\n               \n          </ion-col>\n          <ion-col col-md-6>  \n          <ion-card  text-center padding>\n                   \n              <div class="card-title" padding-bottom>  {{total| currency:\'BRL\':true}}</div>\n              <div class="card-subtitle" padding-bottom>Valor</div>\n\n              \n            </ion-card>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n \n\n    <ion-list>\n  <ion-item-sliding  *ngFor="let orcamento of orcamentos"  >\n  <ion-item >\n     \n    <h2>{{orcamento.nome}}</h2>\n    <p>  {{orcamento.valor | currency:\'BRL\':true}} </p>\n    <ion-note item-right>{{orcamento.data | date: \'dd/MM/yyyy\'}}</ion-note>\n\n \n  </ion-item>\n  <ion-item-options side="left">\n      <button ion-button color="secondary" (click)="makeCall(orcamento.telefone)">\n        <ion-icon name="call"></ion-icon>\n        Call\n      </button>\n    </ion-item-options>\n    <ion-item-options side="right">\n        <button ion-button color="secondary" (click)="edit(orcamento)">\n          <ion-icon name="create" color="light" ></ion-icon>\n          Edit\n        </button>\n    \n      <button ion-button color="danger" (click)="del(orcamento.id)">\n       \n        <ion-icon name="trash" color="light" ></ion-icon>\n        Delete\n      </button>\n    </ion-item-options>\n  </ion-item-sliding>\n  </ion-list>\n  <ion-fab right bottom>\n    <button ion-fab color="primary" (click)="add()">\n      <ion-icon name="add" color="light" large></ion-icon>\n    </button>\n\n  </ion-fab>\n</ion-content>\n\n\n'/*ion-inline-end:"/Users/aylafernandes/Documents/projetos/orcamentopro/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_orcamento_orcamento__["a" /* OrcamentoProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_orcamento_orcamento__["a" /* OrcamentoProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_call_number__["a" /* CallNumber */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_call_number__["a" /* CallNumber */]) === "function" && _c || Object])
     ], HomePage);
@@ -298,8 +293,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_orcamento_orcamento__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_add_add__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_call_number__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angular_2_local_storage__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angular_2_local_storage___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_angular_2_local_storage__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_locales_pt__ = __webpack_require__(679);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angular_2_local_storage__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angular_2_local_storage___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_angular_2_local_storage__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -316,8 +313,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 /* LocalStorage */
 
+Object(__WEBPACK_IMPORTED_MODULE_10__angular_common__["i" /* registerLocaleData */])(__WEBPACK_IMPORTED_MODULE_11__angular_common_locales_pt__["a" /* default */], 'pt');
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -335,7 +335,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/add/add.module#AddPageModule', name: 'AddPage', segment: 'add', priority: 'low', defaultHistory: [] }
                     ]
                 }),
-                __WEBPACK_IMPORTED_MODULE_10_angular_2_local_storage__["LocalStorageModule"].withConfig({
+                __WEBPACK_IMPORTED_MODULE_12_angular_2_local_storage__["LocalStorageModule"].withConfig({
                     prefix: 'orcamentosApp',
                     storageType: 'localStorage'
                 })
@@ -351,7 +351,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_call_number__["a" /* CallNumber */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_7__providers_orcamento_orcamento__["a" /* OrcamentoProvider */]
+                __WEBPACK_IMPORTED_MODULE_7__providers_orcamento_orcamento__["a" /* OrcamentoProvider */],
+                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["LOCALE_ID"], useValue: 'pt' }
             ]
         })
     ], AppModule);

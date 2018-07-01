@@ -15,14 +15,17 @@
        
                   <div class="card-title" color="light" padding-bottom  >{{orcamentos.length}}</div>
                   <div class="card-subtitle" color="light" padding-bottom >Quantidade</div>
+                  
                 </ion-card>
                
           </ion-col>
           <ion-col col-md-6>  
           <ion-card  text-center padding>
                    
-              <div class="card-title" padding-bottom>{{total}}</div>
+              <div class="card-title" padding-bottom>  {{total| currency:'BRL':true}}</div>
               <div class="card-subtitle" padding-bottom>Valor</div>
+
+              
             </ion-card>
             </ion-col>
         </ion-row>
@@ -34,7 +37,7 @@
   <ion-item >
      
     <h2>{{orcamento.nome}}</h2>
-    <p>{{orcamento.valor}}</p>
+    <p>  {{orcamento.valor | currency:'BRL':true}} </p>
     <ion-note item-right>{{orcamento.data | date: 'dd/MM/yyyy'}}</ion-note>
 
  
