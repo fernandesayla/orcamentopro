@@ -1,6 +1,6 @@
 {
   "name": "Orcamento",
-  "app_id": "",
+  "app_id": "cd1191c7",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
