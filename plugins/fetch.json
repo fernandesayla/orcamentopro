@@ -2,7 +2,7 @@
   "mx.ferreyra.callnumber": {
     "source": {
       "type": "registry",
-      "id": "call-number"
+      "id": "call-number@^1.0.1"
     },
     "is_top_level": true,
     "variables": {}
@@ -46,5 +46,17 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-ionic": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic@^4.1.7"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID": "cd1191c7",
+      "CHANNEL_NAME": "Master",
+      "UPDATE_METHOD": "background"
+    }
   }
 }

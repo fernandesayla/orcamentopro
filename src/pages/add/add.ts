@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Orcamento } from '../../models/orcamento';
 import { OrcamentoProvider }  from '../../providers/orcamento/orcamento';
-import { HomePage } from '../home/home';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 /**
  * Generated class for the AddPage page.
@@ -43,13 +42,8 @@ export class AddPage {
     this.title = this.navParams.data.orcamento ? 'Alterando orcamento' : 'Novo orcamento';
   }
 
-
-  
- 
   save() {
    // console.log("save save");
-
-   
        
       try{
         this.orcProv.save(this.form.value)
