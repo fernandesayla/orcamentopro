@@ -40,6 +40,14 @@ module.exports = [
     "clobbers": [
       "call"
     ]
+  },
+  {
+    "id": "cordova-plugin-datepicker.DatePicker",
+    "file": "plugins/cordova-plugin-datepicker/www/android/DatePicker.js",
+    "pluginId": "cordova-plugin-datepicker",
+    "clobbers": [
+      "datePicker"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -51,7 +59,8 @@ module.exports.metadata =
   "cordova-plugin-ionic-keyboard": "2.0.5",
   "cordova-plugin-ionic-webview": "1.1.19",
   "cordova-plugin-whitelist": "1.3.3",
-  "mx.ferreyra.callnumber": "0.0.2"
+  "mx.ferreyra.callnumber": "0.0.2",
+  "cordova-plugin-datepicker": "0.9.3"
 };
 // BOTTOM OF METADATA
 });

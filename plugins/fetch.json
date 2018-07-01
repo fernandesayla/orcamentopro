@@ -58,5 +58,13 @@
       "CHANNEL_NAME": "Master",
       "UPDATE_METHOD": "background"
     }
+  },
+  "cordova-plugin-datepicker": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-datepicker"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

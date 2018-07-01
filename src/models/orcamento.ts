@@ -5,7 +5,7 @@ export class Orcamento {
     email: string;
     telefone: string;
     nome: string;
-    data: Date;
+    data: string;
     valor: number;
     
     constructor(
@@ -14,7 +14,7 @@ export class Orcamento {
       telefone: string,
    
       nome: string,
-      data: Date,
+      data: string,
       valor: number
     )
     {

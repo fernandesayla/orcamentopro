@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/aylafernandes/Documents/projetos/orcamentopro/platforms/android/app/build/intermediates/res/merged/debug/values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/aylafernandes/Documents/projetos/orcamentopro/platforms/android/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "4,2,5,7,6,10,8,9,3",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "161,55,225,320,275,502,374,443,102",
+                        "endColumns": "63,46,49,53,44,48,68,58,58",
+                        "endOffsets": "220,97,270,369,315,546,438,497,156"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,119,166,216,270,315,364,433,492",
+                        "endColumns": "63,46,49,53,44,48,68,58,58",
+                        "endOffsets": "114,161,211,265,310,359,428,487,546"
+                    }
+                }
+            ]
+        }
+    ]
+}

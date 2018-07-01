@@ -11,6 +11,7 @@ import { AddPage } from '../pages/add/add';
 import { CallNumber } from '@ionic-native/call-number';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+ 
 /* LocalStorage */
 import { LocalStorageModule } from 'angular-2-local-storage';
 registerLocaleData(localePt, 'pt');
@@ -42,6 +43,7 @@ registerLocaleData(localePt, 'pt');
     StatusBar,
     SplashScreen,
     CallNumber,
+  
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OrcamentoProvider,
     { provide: LOCALE_ID, useValue: 'pt' } 

@@ -55,7 +55,8 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-ionic-webview": "1.1.19",
     "cordova-plugin-ionic-keyboard": "2.0.5",
-    "cordova-plugin-ionic": "4.1.7"
+    "cordova-plugin-ionic": "4.1.7",
+    "cordova-plugin-datepicker": "0.9.3"
 }
 // BOTTOM OF METADATA
 });

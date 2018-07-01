@@ -47,7 +47,7 @@ export class OrcamentoProvider {
        
       }
       if(!orcamento.data){
-        orcamento.data = new Date()
+        orcamento.data = new Date().toISOString();
       }
       this.orcamentos.push(orcamento);
       this.localStorageService.set("orcamentos", JSON.stringify(this.orcamentos));

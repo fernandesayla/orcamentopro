@@ -44,6 +44,9 @@
       "UPDATE_METHOD": "background",
       "MAX_STORE": "2",
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-datepicker": {
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {},
@@ -101,6 +104,7 @@
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-ionic-webview": "1.1.19",
     "cordova-plugin-ionic-keyboard": "2.0.5",
-    "cordova-plugin-ionic": "4.1.7"
+    "cordova-plugin-ionic": "4.1.7",
+    "cordova-plugin-datepicker": "0.9.3"
   }
 }
